@@ -33,7 +33,9 @@ app.use((err, req, res, next) => {
 });
 
 const server = createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+  cors: { origin: "https://twotea.onrender.com/" },
+});
 
 io.on("connection", (socket) => {
   console.log("a user connected");
