@@ -57,7 +57,7 @@ io.on("connection", (socket) => {
   });
 });
 
-const PORT = 4000;
+const PORT = 5000;
 server.listen(PORT, () =>
   console.log("Server is up and running at:", `http://localhost:${PORT}`)
 );
