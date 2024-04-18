@@ -32,16 +32,9 @@ app.use((err, req, res, next) => {
   }
 });
 
-// CORS başlıklarını burada ayarlayın
-const corsOptions = {
-  origin: "https://twotea.onrender.com",
-  methods: ["GET", "POST"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-};
-
 const server = createServer(app);
 const io = new Server(server, {
-  cors: corsOptions,
+  cors: { origin: "https://twotea.onrender.com", methods: ["GET", "POST"] },
 });
 
 io.on("connection", (socket) => {
@@ -57,7 +50,7 @@ io.on("connection", (socket) => {
   });
 });
 
-const PORT = 5000;
+const PORT = 4000;
 server.listen(PORT, () =>
   console.log("Server is up and running at:", `http://localhost:${PORT}`)
 );
