@@ -2,7 +2,7 @@ import "dotenv/config";
 import "./clients/db";
 import express from "express";
 import Boom from "boom";
-import cors from require("cors") ;
+import cors from "cors" ;
 import routes from "./routes";
 const { createServer } = require("node:http");
 const { join } = require("node:path");
@@ -34,7 +34,7 @@ app.use((err, req, res, next) => {
 
 const server = createServer(app);
 const io = new Server(server, {
-  cors: { origin: "https://twotea.onrender.com/", methods: ["GET", "POST"] },
+  cors: { origin: "https://twotea.onrender.com", methods: ["GET", "POST"] },
 });
 
 io.on("connection", (socket) => {
