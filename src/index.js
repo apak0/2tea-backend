@@ -2,7 +2,7 @@ import "dotenv/config";
 import "./clients/db";
 import express from "express";
 import Boom from "boom";
-import cors from "cors" ;
+import cors from "cors";
 import routes from "./routes";
 const { createServer } = require("node:http");
 const { join } = require("node:path");
@@ -32,9 +32,16 @@ app.use((err, req, res, next) => {
   }
 });
 
+// CORS başlıklarını burada ayarlayın
+const corsOptions = {
+  origin: "https://twotea.onrender.com",
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+};
+
 const server = createServer(app);
 const io = new Server(server, {
-  cors: { origin: "https://twotea.onrender.com", methods: ["GET", "POST"] },
+  cors: corsOptions,
 });
 
 io.on("connection", (socket) => {
