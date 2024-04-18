@@ -2,7 +2,7 @@ import "dotenv/config";
 import "./clients/db";
 import express from "express";
 import Boom from "boom";
-import cors from "cors";
+import cors from require("cors") ;
 import routes from "./routes";
 const { createServer } = require("node:http");
 const { join } = require("node:path");
