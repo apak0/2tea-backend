@@ -6,9 +6,11 @@ import cors from "cors";
 import routes from "./routes";
 const { createServer } = require("node:http");
 const { join } = require("node:path");
-const { Server } = require("socket.io");
+const SocketIO = require("socket.io");
 
 const app = express();
+const server = createServer(app);
+const io = SocketIO(server);
 
 app.use(cors());
 app.use(express.json());
@@ -32,11 +34,6 @@ app.use((err, req, res, next) => {
   }
 });
 
-const server = createServer(app);
-const io = new Server(server, {
-  cors: { origin: "https://twotea.onrender.com", methods: ["GET", "POST"] }
-});
-
 io.on("connection", (socket) => {
   console.log("a user connected");
 
@@ -51,6 +48,10 @@ io.on("connection", (socket) => {
 });
 
 const PORT = process.env.PORT || 4000;
+
 server.listen(PORT, () =>
-  console.log("Server is up and running at:", `https://twotea-backend.onrender.com`)
+  console.log(
+    "Server is up and running at:",
+    `https://twotea-backend.onrender.com`
+  )
 );
