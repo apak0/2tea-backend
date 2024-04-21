@@ -4,13 +4,16 @@ import express from "express";
 import Boom from "boom";
 import cors from "cors";
 import routes from "./routes";
-const { createServer } = require("node:http");
-const { join } = require("node:path");
-const SocketIO = require("socket.io");
+import { createServer } from "http";
+import { Server } from "socket.io";
 
 const app = express();
 const server = createServer(app);
-const io = SocketIO(server);
+const io = new Server(httpServer, {
+  cors: {
+    origin: "https://twotea.onrender.com",
+  },
+});
 
 app.use(cors());
 app.use(express.json());
