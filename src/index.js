@@ -9,7 +9,7 @@ import { Server } from "socket.io";
 
 const app = express();
 const server = createServer(app);
-const io = new Server(httpServer, {
+const io = new Server(server, {
   cors: {
     origin: "https://twotea.onrender.com",
   },
