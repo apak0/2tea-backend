@@ -4,9 +4,9 @@ import express from "express";
 import Boom from "boom";
 import cors from "cors";
 import routes from "./routes";
-import { createServer } from "http"; 
-import { join } from "path";
-import { Server } from "socket.io";
+const { createServer } = require("node:http");
+const { join } = require("node:path");
+const { Server } = require("socket.io");
 
 const app = express();
 
