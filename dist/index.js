@@ -6,9 +6,11 @@ var _cors = require('cors'); var _cors2 = _interopRequireDefault(_cors);
 var _routes = require('./routes'); var _routes2 = _interopRequireDefault(_routes);
 const { createServer } = require("node:http");
 const { join } = require("node:path");
-const { Server } = require("socket.io");
+const SocketIO = require("socket.io");
 
 const app = _express2.default.call(void 0, );
+const server = createServer(app);
+const io = SocketIO(server);
 
 app.use(_cors2.default.call(void 0, ));
 app.use(_express2.default.json());
@@ -32,11 +34,6 @@ app.use((err, req, res, next) => {
   }
 });
 
-const server = createServer(app);
-const io = new Server(server, {
-  cors: { origin: "https://twotea.onrender.com/", methods: ["GET", "POST"] },
-});
-
 io.on("connection", (socket) => {
   console.log("a user connected");
 
@@ -50,7 +47,11 @@ io.on("connection", (socket) => {
   });
 });
 
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
+
 server.listen(PORT, () =>
-  console.log("Server is up and running at:", `http://localhost:${PORT}`)
+  console.log(
+    "Server is up and running at:",
+    `https://twotea-backend.onrender.com`
+  )
 );
