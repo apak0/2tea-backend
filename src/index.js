@@ -34,7 +34,7 @@ app.use((err, req, res, next) => {
 
 const server = createServer(app);
 const io = new Server(server, {
-  cors: { AccessControlAllowOrigin: "https://twotea.onrender.com", methods: ["GET", "POST"] }
+  cors: { origin: "*", methods: ["GET", "POST"] }
 });
 
 io.on("connection", (socket) => {
