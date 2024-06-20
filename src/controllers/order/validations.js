@@ -1,6 +1,6 @@
 import Joi from 'joi';
 const itemSchema = Joi.object({
-  name: Joi.string().required(),
+  title: Joi.string().required(),
   quantity: Joi.number().integer().required()
 });
 
