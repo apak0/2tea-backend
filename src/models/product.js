@@ -19,10 +19,7 @@ const ProductSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  quantity: {
-    type: Number,
-    required: true,
-  },
+ 
 });
 
 const User = mongoose.model('product', ProductSchema);

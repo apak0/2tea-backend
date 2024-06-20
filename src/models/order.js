@@ -2,6 +2,17 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
+const ItemSchema = new Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  quantity: {
+    type: Number,
+    required: true,
+  },
+});
+
 const OrderSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
@@ -19,12 +30,7 @@ const OrderSchema = new Schema({
     type: String,
     required: true,
   },
-  items: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "product",
-    },
-  ],
+  items: [ItemSchema],
   createdAt: {
     type: Date,
     default: Date.now,
@@ -34,3 +40,4 @@ const OrderSchema = new Schema({
 const Order = mongoose.model("order", OrderSchema);
 
 export default Order;
+

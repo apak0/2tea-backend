@@ -5,7 +5,8 @@ import OrderSchema from "./validations";
 
 const Create = async (req, res, next) => {
   const input = req.body;
-  input.items = input.items ? JSON.parse(input.items) : null;
+  input.items = input.items.map(({ title, quantity }) => ({ title, quantity }));
+  console.log("input:", input.items);
   const { error } = OrderSchema.validate(input);
 
   if (error) {
@@ -21,7 +22,6 @@ const Create = async (req, res, next) => {
       phoneNumber: input.phoneNumber,
       address: input.address,
       items: input.items,
-      
     });
 
     const savedData = await order.save();

@@ -11,7 +11,7 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://twotea.onrender.com",
+    origin: "http://localhost:3000",
   },
 });
 
@@ -46,6 +46,7 @@ io.on("connection", (socket) => {
 
   socket.on("notification", (data) => {
     // Broadcast the notification to all other connected clients
+    console.log("notification received");
     socket.broadcast.emit("notification", data);
   });
 });
