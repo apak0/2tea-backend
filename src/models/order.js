@@ -35,6 +35,10 @@ const OrderSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+
+  orderNote: {
+    type: String,
+  }
 });
 
 const Order = mongoose.model("order", OrderSchema);

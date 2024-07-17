@@ -11,6 +11,7 @@ const OrderSchema = Joi.object({
   fullName: Joi.string().required(),
   phoneNumber: Joi.number().required(),
   items: itemsSchema,
+  orderNote:Joi.string()
 });
 
 export default OrderSchema;

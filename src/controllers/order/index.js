@@ -22,6 +22,7 @@ const Create = async (req, res, next) => {
       phoneNumber: input.phoneNumber,
       address: input.address,
       items: input.items,
+      orderNote: input.orderNote
     });
 
     const savedData = await order.save();
