@@ -57,8 +57,28 @@ const GetMyOrders = async (req, res, next) => {
   }
 };
 
+const UpdateStatus = async (req, res, next) => {
+  const { orderId, status } = req.body;
+
+  try {
+    const order = await Order.findById(orderId);
+
+    if (!order) {
+      return next(Boom.notFound("Order not found"));
+    }
+
+    order.status = status;
+    const updatedOrder = await order.save();
+
+    res.json(updatedOrder);
+  } catch (e) {
+    next(e);
+  }
+};
+
 export default {
   Create,
   List,
   GetMyOrders,
+  UpdateStatus,
 };

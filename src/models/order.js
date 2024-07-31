@@ -35,9 +35,13 @@ const OrderSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-
   orderNote: {
     type: String,
+  },
+  status: {
+    type: String,
+    enum: ['Pending', 'Processing', 'Completed'],
+    default: 'Pending',
   }
 });
 
