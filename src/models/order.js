@@ -40,8 +40,8 @@ const OrderSchema = new Schema({
   },
   status: {
     type: String,
-    enum: ['Pending', 'Processing', 'Completed'],
-    default: 'Pending',
+    enum: ['Beklemede', 'Hazırlanıyor', 'Tamamlandı'],
+    default: 'Beklemede',
   }
 });
 
