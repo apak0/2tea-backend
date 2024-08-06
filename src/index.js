@@ -11,10 +11,7 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    // when use on live
-    origin: "https://twotea.onrender.com",
-    // when use on local
-    // origin: "http://localhost:3000",
+    origin: ["https://twotea.onrender.com", "http://localhost:3000"],
   },
 });
 
