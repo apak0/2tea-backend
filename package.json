@@ -10,7 +10,7 @@
     "build": "sucrase ./src -d ./dist --transforms imports"
   },
   "engines": {
-    "node": ">=18"
+    "node": "16.x"
   },
   "dependencies": {
     "accesscontrol": "^2.2.1",
