@@ -9,9 +9,9 @@ var _socketio = require('socket.io');
 
 const app = _express2.default.call(void 0, );
 const server = _http.createServer.call(void 0, app);
-const io = new (0, _socketio.Server)(httpServer, {
+const io = new (0, _socketio.Server)(server, {
   cors: {
-    origin: "https://twotea.onrender.com",
+    origin: ["https://twotea.onrender.com", "http://localhost:3000"],
   },
 });
 
@@ -46,6 +46,7 @@ io.on("connection", (socket) => {
 
   socket.on("notification", (data) => {
     // Broadcast the notification to all other connected clients
+    console.log("notification received");
     socket.broadcast.emit("notification", data);
   });
 });
@@ -54,7 +55,7 @@ const PORT = process.env.PORT || 4000;
 
 server.listen(PORT, () =>
   console.log(
-    "Server is up and running at:",
+    "Server is up and running at 1:",
     `https://twotea-backend.onrender.com`
   )
 );

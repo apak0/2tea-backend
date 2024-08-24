@@ -6,5 +6,6 @@ var _order = require('../controllers/order'); var _order2 = _interopRequireDefau
 router.post('/', _order2.default.Create);
 router.get('/', _order2.default.List);
 router.get('/my-orders', _order2.default.GetMyOrders);
+router.post('/update-status', _order2.default.UpdateStatus);
 
 exports. default = router;

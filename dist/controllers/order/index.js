@@ -5,7 +5,8 @@ var _validations = require('./validations'); var _validations2 = _interopRequire
 
 const Create = async (req, res, next) => {
   const input = req.body;
-  input.items = input.items ? JSON.parse(input.items) : null;
+  input.items = input.items.map(({ title, quantity }) => ({ title, quantity }));
+  console.log("input:", input.items);
   const { error } = _validations2.default.validate(input);
 
   if (error) {
@@ -21,7 +22,7 @@ const Create = async (req, res, next) => {
       phoneNumber: input.phoneNumber,
       address: input.address,
       items: input.items,
-      
+      orderNote: input.orderNote
     });
 
     const savedData = await order.save();
@@ -56,8 +57,28 @@ const GetMyOrders = async (req, res, next) => {
   }
 };
 
+const UpdateStatus = async (req, res, next) => {
+  const { orderId, status } = req.body;
+
+  try {
+    const order = await _order2.default.findById(orderId);
+
+    if (!order) {
+      return next(_boom2.default.notFound("Order not found"));
+    }
+
+    order.status = status;
+    const updatedOrder = await order.save();
+
+    res.json(updatedOrder);
+  } catch (e) {
+    next(e);
+  }
+};
+
 exports. default = {
   Create,
   List,
   GetMyOrders,
+  UpdateStatus,
 };
