@@ -5,6 +5,7 @@ import OrderSchema from "./validations";
 
 const Create = async (req, res, next) => {
   const input = req.body;
+  console.log(input)
   input.items = input.items.map(({ title, quantity }) => ({ title, quantity }));
   console.log("input:", input.items);
   const { error } = OrderSchema.validate(input);
@@ -40,6 +41,7 @@ const List = async (req, res, next) => {
       .populate("items");
 
     res.json(orders);
+    
   } catch (e) {
     next(e);
   }
