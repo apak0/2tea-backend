@@ -6,6 +6,7 @@ import cors from "cors";
 import routes from "./routes";
 import { createServer } from "http";
 import { Server } from "socket.io";
+import mongoose from "mongoose";
 
 const app = express();
 const server = createServer(app);
@@ -15,6 +16,7 @@ const io = new Server(server, {
   },
 });
 
+mongoose.connect('mongodb+srv://bufman25:nB5eUPMeIpQVCZh5@cluster0.5kviy6i.mongodb.net/')
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
