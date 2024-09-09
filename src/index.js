@@ -16,7 +16,7 @@ const io = new Server(server, {
   },
 });
 
-mongoose.connect('mongodb+srv://bufman25:nB5eUPMeIpQVCZh5@cluster0.5kviy6i.mongodb.net/')
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
